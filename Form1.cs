@@ -26,15 +26,6 @@ namespace FillingRTFDoc
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            Char letterChar = 'Г';
-            Encoding.Unicode.GetBytes("Г");
-            Char.ToString('Г');
-            //textBox2.Text = Char.ConvertToUtf32("U");
-            //textBox2.Text = BitConverter.ToString(Encoding.Unicode.GetBytes("{"));
-            //\'c5
-            textBox2.Text = chartoRTFstyle("Г");
-            //Encoding.GetEncoding("Windows-1251").GetBytes
-            //Encoding.Unicode.GetString(Encoding.Unicode.GetBytes("Г"));
             
             Stream resourseStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("FillingRTFDoc.template_doc.rtf");
             StreamReader tr = new StreamReader(resourseStream);
@@ -42,15 +33,51 @@ namespace FillingRTFDoc
 
             String stringDoc = tr.ReadToEnd();
 
-            //"\'" + BitConverter.ToString(Encoding.GetEncoding("Windows-1251").GetBytes("Г"))
-            stringDoc = stringDoc.Replace("$n01", chartoRTFstyle("Г"));
-            stringDoc = stringDoc.Replace("$n02", chartoRTFstyle("у"));
-            stringDoc = stringDoc.Replace("$n03", chartoRTFstyle("л"));
+            String FIO;
+
+            FIO = textBoxSurname.Text.Trim() + " " + textBoxName.Text.Trim();
+            FIO = FIO.Trim() + " " + textBoxAddName.Text.Trim();
+            FIO.Trim();
+            
+            int indexN = 1;
+            //filing Surname in Doc
+            foreach (char _c in FIO)
+            {
+                stringDoc = stringDoc.Replace("$n" + String.Format("{0:000}",indexN), chartoRTFstyle(_c.ToString()));
+                indexN = indexN + 1;
+            }
+
+            for (int i = indexN; i < 38 ; i++)
+            {
+                stringDoc = stringDoc.Replace("$n" + String.Format("{0:000}", i), "");
+            }
+
+            FIO = textBoxSurname1.Text.Trim() + " " + textBoxName1.Text.Trim();
+            FIO = FIO.Trim() + " " + textBoxAddName1.Text.Trim();
+            FIO.Trim();
+
+            indexN = 101;
+            //filing Surname in Doc
+            foreach (char _c in FIO)
+            {
+                stringDoc = stringDoc.Replace("$n" + String.Format("{0:000}", indexN), chartoRTFstyle(_c.ToString()));
+                indexN = indexN + 1;
+            }
+
+            for (int i = indexN; i < 138; i++)
+            {
+                stringDoc = stringDoc.Replace("$n" + String.Format("{0:000}", i), "");
+            }
 
             tw.Write(stringDoc);
             tw.Close();
 
             Process.Start("data.rtf");
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
