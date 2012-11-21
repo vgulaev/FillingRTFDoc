@@ -117,4 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>Пользуйтесь программой на здоровье, можете ее запатентовать, потому что она распространеться, по лицензии мультфильма "Просто так" http://www.youtube.com/watch?v=1l5eww7JowM
+Обо мне: Гуляев Валентин, vgulaev@yandex.ru, +7-961-209-1778.
+Use programm for your pleasure, you can licensed it, becouse it share under animated feature film "Just for your favour". http://www.youtube.com/watch?v=1l5eww7JowM
+About me: Gulyaev Valentin, vgulaev@yandex.ru, +7-961-209-1778.</value>
+  </data>
 </root>
